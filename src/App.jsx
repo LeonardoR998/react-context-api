@@ -1,22 +1,24 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+import { PostsProvider } from "../src/context/PostContext";
 import DefaultLayout from "./layouts/DefaultLayout";
 import HomePage from "./pages/Homepage";
 import AboutPage from "./pages/AboutPage";
-import PostList from "./pages/PostList";
+import PostsPage from "./pages/PostsPage";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route Component={DefaultLayout}>
-          <Route index Component={HomePage} />
-          <Route path="/about" Component={AboutPage} />
-          <Route path="/posts" Component={PostList} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+    <PostsProvider>
+      <BrowserRouter>
+        <Routes>
+          <Route element={<DefaultLayout />}>
+            <Route index element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/posts" element={<PostsPage />} />{" "}
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </PostsProvider>
   );
 }
 

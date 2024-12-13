@@ -1,3 +1,6 @@
+import { createContext, useState } from "react";
+
+// Array dei post
 const posts = [
   {
     id: 1,
@@ -36,4 +39,12 @@ const posts = [
   },
 ];
 
-export default posts;
+// Crea il contesto
+export const PostsContext = createContext();
+
+// Crea il provider
+export function PostsProvider({ children }) {
+  return (
+    <PostsContext.Provider value={{ posts }}>{children}</PostsContext.Provider>
+  );
+}
